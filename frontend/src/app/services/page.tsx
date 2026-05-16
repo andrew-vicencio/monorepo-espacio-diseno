@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ServicesView from "./ServicesView";
+import { getServices } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Services",
@@ -27,6 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage() {
-  return <ServicesView />;
+export default async function ServicesPage() {
+  const services = await getServices();
+  return <ServicesView services={services} />;
 }

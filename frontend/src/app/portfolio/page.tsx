@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import projects from "@/data/projects.json";
-import PortfolioView, { PortfolioProject } from "./PortfolioView";
+import PortfolioView from "./PortfolioView";
+import { getProjects } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -28,8 +28,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PortfolioPage() {
-  // Local static data — project videos baked into the static HTML.
-  // To re-add Sanity later: `const projects = await client.fetch(PROJECTS_QUERY)`.
-  return <PortfolioView projects={projects as PortfolioProject[]} />;
+export default async function PortfolioPage() {
+  const projects = await getProjects();
+  return <PortfolioView projects={projects} />;
 }

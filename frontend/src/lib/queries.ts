@@ -30,3 +30,29 @@ export async function getClients() {
 export async function getProductCategories() {
   return client.fetch(PRODUCT_CATEGORIES_QUERY)
 }
+
+export const SERVICES_QUERY = `*[_type == "service"] | order(order asc, _createdAt asc) {
+  _id,
+  title,
+  description,
+  image{ ..., "alt": alt }
+}`
+
+export const PROJECTS_QUERY = `*[_type == "project"] | order(_createdAt desc) {
+  _id,
+  title,
+  client,
+  featured,
+  coverImage{ ..., "alt": alt },
+  images[]{ ..., "alt": alt },
+  videoUrl,
+  body
+}`
+
+export async function getServices() {
+  return client.fetch(SERVICES_QUERY)
+}
+
+export async function getProjects() {
+  return client.fetch(PROJECTS_QUERY)
+}

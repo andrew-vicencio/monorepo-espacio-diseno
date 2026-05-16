@@ -32,6 +32,7 @@ export default defineConfig({
                   .items([
                     S.documentTypeListItem('product').title('Products'),
                     S.documentTypeListItem('productCategory').title('Categories'),
+                    S.documentTypeListItem('service').title('Services'),
                   ]),
               ),
             S.listItem()

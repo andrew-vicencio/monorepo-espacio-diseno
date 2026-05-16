@@ -14,6 +14,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+import type { SanityImageSource } from "@sanity/image-url";
+import { urlFor } from "@/lib/sanityImage";
 
 export interface Service {
   title: string;
@@ -22,9 +24,66 @@ export interface Service {
   img?: string;
 }
 
+type SanityService = {
+  _id: string
+  title: string
+  description?: string[]
+  image?: SanityImageSource & { alt?: string }
+}
+
 library.add(fas);
 
-const ServicesView = () => {
+const staticServices: Service[] = [
+  {
+    title: "Design & Planning",
+    description: [
+      "Our team performs a comprehensive assessment of the space, and after a collaborative discussion with our clients to grasp their specifications and functional needs, our creative team then crafts detailed space planning and design solutions, which include 3D rendering, 3D video walkthrough, materials, finishes and furniture specifications. Additionally, we provide a detailed cost analysis of the project for the client's budget consideration.",
+    ],
+    img: "/images/services/Service Page/Service 1.jpeg",
+  },
+  {
+    title: "Interior Fit-Out & Project Management",
+    description: [
+      "After the approval of the floor plan, design and cost proposal, we move forward with the construction and execution of our client's vision, which includes the installation of walls, ceilings, flooring, lighting, and other design elements. We also implement engineering works to ensure that the space is fully functional, including mechanical systems, electrical layouts, structured cabling, plumbing, security systems, and fire safety measures.",
+      "Our Construction and Project Management team is dedicated to meet tight deadlines. We establish a detailed timeline prior to implementation to effectively manage client expectations, coordinate with suppliers, and hold regular meetings with our clients to ensure everything stays on track and aligns with their vision.",
+    ],
+    img: "/images/services/Service Page/service 2 .png",
+  },
+  {
+    title: "Ergonomic & Modular Furniture",
+    description: [
+      "What sets Espacio Diseño apart from other contractors is our exclusive range of modular and ergonomic furniture. We offer a wide range of modular products for tables, partitions, storage, and ergonomic chairs. Our products prioritize comfort, functionality, and style.",
+    ],
+    img: "/images/services/Service Page/service 3.jpg",
+  },
+  {
+    title: "Custom Furniture & Specialty Products",
+    description: [
+      "We also specialize in designing and producing customized furniture, thanks to our own dedicated production line. This allows us to create unique pieces tailored specifically for your space and needs. We also offer a wide range of carpets and window blinds as part of our specialty products.",
+    ],
+    img: "/images/services/Service Page/Service 4.jpg",
+  },
+  {
+    title: "Allied Facilities Management Services",
+    description: [
+      "We provide comprehensive services to businesses in the Facilities Management sector, addressing all the needs and requirements of the facilities under their care. As their service partner, our offerings encompass a wide range of solutions, covering everything from repair and maintenance to space optimization and tailored solutions for unique requirements of each facility.",
+    ],
+    img: "/images/services/Service Page/Services 5.png",
+  },
+]
+
+type ResolvedService = { title: string; description: string[]; img?: string; alt: string }
+
+const ServicesView = ({ services }: { services?: SanityService[] }) => {
+  const resolvedServices: ResolvedService[] = services && services.length > 0
+    ? services.map((s) => ({
+        title: s.title,
+        description: s.description ?? [],
+        img: s.image ? urlFor(s.image).width(800).format('webp').quality(80).url() : undefined,
+        alt: s.image?.alt ?? s.title,
+      }))
+    : staticServices.map((s) => ({ ...s, alt: s.title }))
+
   const advantages: Service[] = [
     {
       image: "fa-solid fa-list-check",
@@ -81,45 +140,6 @@ const ServicesView = () => {
       description: [
         "We ensure compliance of building codes, construction guidelines, and safety regulations.",
       ],
-    },
-  ];
-
-  const services: Service[] = [
-    {
-      title: "Design & Planning",
-      description: [
-        "Our team performs a comprehensive assessment of the space, and after a collaborative discussion with our clients to grasp their specifications and functional needs, our creative team then crafts detailed space planning and design solutions, which include 3D rendering, 3D video walkthrough, materials, finishes and furniture specifications. Additionally, we provide a detailed cost analysis of the project for the client's budget consideration.",
-      ],
-      img: "/images/services/Service Page/Service 1.jpeg",
-    },
-    {
-      title: "Interior Fit-Out & Project Management",
-      description: [
-        "After the approval of the floor plan, design and cost proposal, we move forward with the construction and execution of our client's vision, which includes the installation of walls, ceilings, flooring, lighting, and other design elements. We also implement engineering works to ensure that the space is fully functional, including mechanical systems, electrical layouts, structured cabling, plumbing, security systems, and fire safety measures.",
-        "Our Construction and Project Management team is dedicated to meet tight deadlines. We establish a detailed timeline prior to implementation to effectively manage client expectations, coordinate with suppliers, and hold regular meetings with our clients to ensure everything stays on track and aligns with their vision.",
-      ],
-      img: "/images/services/Service Page/service 2 .png",
-    },
-    {
-      title: "Ergonomic & Modular Furniture",
-      description: [
-        "What sets Espacio Diseño apart from other contractors is our exclusive range of modular and ergonomic furniture. We offer a wide range of modular products for tables, partitions, storage, and ergonomic chairs. Our products prioritize comfort, functionality, and style.",
-      ],
-      img: "/images/services/Service Page/service 3.jpg",
-    },
-    {
-      title: "Custom Furniture & Specialty Products",
-      description: [
-        "We also specialize in designing and producing customized furniture, thanks to our own dedicated production line. This allows us to create unique pieces tailored specifically for your space and needs. We also offer a wide range of carpets and window blinds as part of our specialty products.",
-      ],
-      img: "/images/services/Service Page/Service 4.jpg",
-    },
-    {
-      title: "Allied Facilities Management Services",
-      description: [
-        "We provide comprehensive services to businesses in the Facilities Management sector, addressing all the needs and requirements of the facilities under their care. As their service partner, our offerings encompass a wide range of solutions, covering everything from repair and maintenance to space optimization and tailored solutions for unique requirements of each facility.",
-      ],
-      img: "/images/services/Service Page/Services 5.png",
     },
   ];
 
@@ -223,7 +243,7 @@ const ServicesView = () => {
               End-to-End Solutions
             </h2>
           </div>
-          {services.map((service: Service, i: number) => (
+          {resolvedServices.map((service, i) => (
             <motion.div
               key={i}
               className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12 items-center"
@@ -237,8 +257,8 @@ const ServicesView = () => {
                 variants={i % 2 === 0 ? SlideRight : SlideLeft}
               >
                 <img
-                  src={service?.img}
-                  alt={service.title}
+                  src={service.img}
+                  alt={service.alt}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

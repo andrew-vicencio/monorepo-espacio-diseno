@@ -4,6 +4,7 @@ import {post} from './post'
 import {project} from './project'
 import {productCategory} from './productCategory'
 import {product} from './product'
+import {service} from './service'
 import {testimonial} from './testimonial'
 import {client} from './client'
 
@@ -14,6 +15,7 @@ export const schemaTypes = [
   project,
   productCategory,
   product,
+  service,
   testimonial,
   client,
 ]

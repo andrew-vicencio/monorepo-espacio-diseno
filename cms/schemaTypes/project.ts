@@ -51,6 +51,12 @@ export const project = defineType({
       ],
     }),
     defineField({
+      name: 'videoUrl',
+      title: 'Video URL',
+      type: 'url',
+      description: 'External video link (e.g. Cloudflare R2, Vimeo). Used in the portfolio gallery.',
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',

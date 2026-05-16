@@ -11,32 +11,23 @@ import {
   SlideUp,
   StaggeredFadeIn,
 } from "@/components/animations/animations";
+import type { SanityImageSource } from "@sanity/image-url";
+import { urlFor } from "@/lib/sanityImage";
 
-export interface PortfolioProject {
+export type SanityProject = {
   _id: string;
-  title: string | null;
-  video: Array<{ asset: { url: string | null } | null }> | null;
-}
+  title: string;
+  client?: string;
+  featured?: boolean;
+  coverImage?: SanityImageSource & { alt?: string };
+  images?: Array<SanityImageSource & { alt?: string }>;
+  videoUrl?: string;
+  body?: unknown;
+};
 
-const PortfolioView = ({ projects }: { projects: PortfolioProject[] }) => {
-  const featuredProjects = [
-    {
-      title: "Amdocs Limited",
-      description: [
-        "One of the projects we had undertaken for Amdocs is the renovation of their pantry which they are holding on two floors.",
-        "The Amdocs Pantry Renovation Project is a flagship initiative designed to revitalize pantry space into a modern and welcoming environment. Our design concept focuses on enhancing functionality and aesthetics, incorporating contemporary design elements. Their brand identity was incorporated by using a fresh color palette. Other considerations are improved lighting and the use of eco-friendly sustainable materials to create an inviting atmosphere. Key elements include comfortable seating areas, upgraded kitchen appliances, and designated zones for dining and informal gatherings, all aimed at fostering interaction and enhancing the overall employee experience.",
-      ],
-      img: "https://cdn.pixabay.com/video/2022/12/18/143419-782363231_large.mp4",
-    },
-    {
-      title: "Amdocs Limited",
-      description: [
-        "One of the projects we had undertaken for Amdocs is the renovation of their pantry which they are holding on two floors.",
-        "The Amdocs Pantry Renovation Project is a flagship initiative designed to revitalize pantry space into a modern and welcoming environment. Our design concept focuses on enhancing functionality and aesthetics, incorporating contemporary design elements. Their brand identity was incorporated by using a fresh color palette. Other considerations are improved lighting and the use of eco-friendly sustainable materials to create an inviting atmosphere. Key elements include comfortable seating areas, upgraded kitchen appliances, and designated zones for dining and informal gatherings, all aimed at fostering interaction and enhancing the overall employee experience.",
-      ],
-      img: "https://cdn.pixabay.com/video/2022/12/18/143419-782363231_large.mp4",
-    },
-  ];
+const PortfolioView = ({ projects }: { projects: SanityProject[] }) => {
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
 
   return (
     <>
@@ -80,69 +71,68 @@ const PortfolioView = ({ projects }: { projects: PortfolioProject[] }) => {
         </div>
 
         {/* Featured projects */}
-        <section className="flex flex-col gap-20 py-20 px-6 md:px-24 lg:px-36 md:py-28" aria-label="Featured projects">
-          <div>
-            <p className="font-source-sans text-espacio-red uppercase tracking-[0.2em] text-sm font-semibold mb-3">
-              Case Studies
-            </p>
-            <h2 className="font-montserrat font-light text-3xl md:text-4xl">
-              Featured Projects
-            </h2>
-          </div>
-          {featuredProjects.map((project, i) => (
-            <motion.div
-              key={i}
-              className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16"
-              variants={FadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className={`w-full lg:w-auto lg:max-w-[480px] rounded-xl overflow-hidden shadow-lg flex-shrink-0 ${
-                  i % 2 ? "lg:order-2" : ""
-                }`}
-                variants={i % 2 ? SlideLeft : SlideRight}
-              >
-                <video
-                  loop
-                  autoPlay
-                  muted
-                  playsInline
-                  className="w-full object-cover"
-                >
-                  <source src={project.img} />
-                </video>
-              </motion.div>
-              <motion.div className="flex-1 flex flex-col gap-6">
-                <div>
-                  <p className="font-source-sans text-espacio-red uppercase tracking-[0.2em] text-sm font-semibold mb-2">
-                    Client Project
-                  </p>
-                  <motion.h3
-                    className="font-montserrat text-3xl font-light tracking-tight"
-                    variants={SlideDown}
-                  >
-                    {project.title}
-                  </motion.h3>
-                </div>
-                {project.description.map((desc, j) => (
-                  <motion.p
-                    key={j}
-                    variants={j === project.description.length - 1 ? SlideUp : FadeIn}
-                    className="font-source-sans leading-8 tracking-wide text-dark-grey"
-                  >
-                    {desc}
-                  </motion.p>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </section>
+        {featured.length > 0 && (
+          <section className="flex flex-col gap-20 py-20 px-6 md:px-24 lg:px-36 md:py-28" aria-label="Featured projects">
+            <div>
+              <p className="font-source-sans text-espacio-red uppercase tracking-[0.2em] text-sm font-semibold mb-3">
+                Case Studies
+              </p>
+              <h2 className="font-montserrat font-light text-3xl md:text-4xl">
+                Featured Projects
+              </h2>
+            </div>
+            {featured.map((project, i) => {
+              const mediaSrc = project.videoUrl ?? null;
+              const imgSrc = project.coverImage
+                ? urlFor(project.coverImage).width(960).format('webp').quality(80).url()
+                : null;
+              const imgAlt = project.coverImage?.alt ?? project.title;
 
-        {/* Video gallery */}
-        {projects.length > 0 && (
-          <section className="pb-20 px-6 md:px-24 lg:px-36" aria-label="Project videos">
+              return (
+                <motion.div
+                  key={project._id}
+                  className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16"
+                  variants={FadeIn}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className={`w-full lg:w-auto lg:max-w-[480px] rounded-xl overflow-hidden shadow-lg flex-shrink-0 ${i % 2 ? "lg:order-2" : ""}`}
+                    variants={i % 2 ? SlideLeft : SlideRight}
+                  >
+                    {mediaSrc ? (
+                      <video loop autoPlay muted playsInline className="w-full object-cover">
+                        <source src={mediaSrc} />
+                      </video>
+                    ) : imgSrc ? (
+                      <img src={imgSrc} alt={imgAlt} className="w-full object-cover" />
+                    ) : null}
+                  </motion.div>
+                  <motion.div className="flex-1 flex flex-col gap-6">
+                    <div>
+                      {project.client && (
+                        <p className="font-source-sans text-espacio-red uppercase tracking-[0.2em] text-sm font-semibold mb-2">
+                          {project.client}
+                        </p>
+                      )}
+                      <motion.h3
+                        className="font-montserrat text-3xl font-light tracking-tight"
+                        variants={SlideDown}
+                      >
+                        {project.title}
+                      </motion.h3>
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </section>
+        )}
+
+        {/* Project gallery */}
+        {rest.length > 0 && (
+          <section className="pb-20 px-6 md:px-24 lg:px-36" aria-label="Project gallery">
             <div className="mb-10">
               <p className="font-source-sans text-espacio-red uppercase tracking-[0.2em] text-sm font-semibold mb-3">
                 Project Gallery
@@ -158,28 +148,40 @@ const PortfolioView = ({ projects }: { projects: PortfolioProject[] }) => {
               whileInView="visible"
               viewport={{ once: true }}
             >
-              {projects.map((proj) => {
-                const url = proj.video?.[0]?.asset?.url;
-                if (!url) return null;
+              {rest.map((proj) => {
+                const videoSrc = proj.videoUrl;
+                const imgSrc = proj.coverImage
+                  ? urlFor(proj.coverImage).width(800).format('webp').quality(80).url()
+                  : null;
+                const imgAlt = proj.coverImage?.alt ?? proj.title;
+
                 return (
                   <motion.li
                     key={proj._id}
                     className="rounded-xl overflow-hidden shadow-md bg-slate-900"
                     variants={SlideUp}
                   >
-                    {proj.title && (
-                      <div className="px-4 py-3 bg-slate-800">
-                        <h3 className="font-montserrat text-white text-sm font-medium">{proj.title}</h3>
-                      </div>
-                    )}
-                    <video className="w-full" controls>
-                      <source src={url} />
-                    </video>
+                    <div className="px-4 py-3 bg-slate-800">
+                      <h3 className="font-montserrat text-white text-sm font-medium">{proj.title}</h3>
+                    </div>
+                    {videoSrc ? (
+                      <video className="w-full" controls>
+                        <source src={videoSrc} />
+                      </video>
+                    ) : imgSrc ? (
+                      <img src={imgSrc} alt={imgAlt} className="w-full object-cover" />
+                    ) : null}
                   </motion.li>
                 );
               })}
             </motion.ul>
           </section>
+        )}
+
+        {projects.length === 0 && (
+          <div className="py-32 text-center text-dark-grey font-source-sans">
+            Projects coming soon.
+          </div>
         )}
       </main>
       <CallToAction />
