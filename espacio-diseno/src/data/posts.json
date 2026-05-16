@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "post-1",
+    "title": "Designing Workspaces That Boost Productivity",
+    "slug": { "current": "designing-workspaces-that-boost-productivity" },
+    "excerpt": "How thoughtful space planning, lighting, and ergonomic furniture come together to create offices where teams do their best work.",
+    "image": "/images/posts/placeholder.jpg",
+    "publishedAt": "2025-09-12",
+    "_updatedAt": "2025-09-18",
+    "body": "<p>A well-designed workspace is more than a pleasant backdrop. It is an active contributor to how people focus, collaborate, and recharge throughout the day.</p><h2>Start with how teams actually work</h2><p>Before specifying a single desk, we map how a team moves through its day. Quiet zones, collaboration hubs, and informal break areas each serve a purpose, and the balance between them is what makes a floor plate feel effortless.</p><h2>Lighting and acoustics matter</h2><p>Natural light, layered artificial lighting, and acoustic treatment reduce fatigue and keep distractions in check. These details rarely make a mood board, but employees feel their absence immediately.</p>"
+  },
+  {
+    "_id": "post-2",
+    "title": "Five Trends Shaping Office Fit-Outs in 2025",
+    "slug": { "current": "five-trends-shaping-office-fit-outs-2025" },
+    "excerpt": "From hybrid-ready layouts to biophilic design, here are the ideas driving the most requested fit-out projects this year.",
+    "image": "/images/posts/placeholder.jpg",
+    "publishedAt": "2025-07-03",
+    "_updatedAt": "2025-07-03",
+    "body": "<p>The workplace continues to evolve, and the fit-out projects we are asked to deliver reflect a clear set of priorities.</p><h2>1. Hybrid-ready layouts</h2><p>Bookable desks, well-equipped meeting rooms, and flexible furniture allow offices to flex with attendance that changes day to day.</p><h2>2. Biophilic design</h2><p>Planting, natural materials, and outdoor views are now a baseline expectation rather than a premium add-on.</p><h2>3. Sustainable materials</h2><p>Clients increasingly ask for low-VOC finishes, responsibly sourced timber, and furniture that can be refurbished rather than replaced.</p>"
+  },
+  {
+    "_id": "post-3",
+    "title": "The Value of Repeat Clients in Fit-Out Work",
+    "slug": { "current": "the-value-of-repeat-clients-in-fit-out-work" },
+    "excerpt": "Why an 80% repeat-client rate says more about a contractor than any single completed project.",
+    "image": "/images/posts/placeholder.jpg",
+    "publishedAt": "2025-05-20",
+    "_updatedAt": "2025-06-01",
+    "body": "<p>In the fit-out industry, trust is earned on site, milestone by milestone. A high rate of repeat clients is the clearest signal that a contractor delivers on its promises.</p><h2>Trust is built over time</h2><p>Expansion, relocation, and renovation are recurring needs for growing companies. Being the partner a client returns to means consistently meeting deadlines and budgets without surprises.</p>"
+  },
+  {
+    "_id": "post-4",
+    "title": "Choosing Ergonomic Furniture for Your Team",
+    "slug": { "current": "choosing-ergonomic-furniture-for-your-team" },
+    "excerpt": "A practical guide to selecting desking, seating, and storage that supports comfort and long-term wellbeing.",
+    "image": "/images/posts/placeholder.jpg",
+    "publishedAt": "2025-03-14",
+    "_updatedAt": "2025-03-14",
+    "body": "<p>Ergonomic furniture is an investment in your team's health and a measurable contributor to retention and engagement.</p><h2>Seating comes first</h2><p>Adjustable seat height, lumbar support, and armrests that move with the user accommodate a wide range of body types and tasks.</p><h2>Height-adjustable desking</h2><p>Sit-stand desks let people change posture through the day, reducing strain and keeping energy levels steady.</p>"
+  }
+]

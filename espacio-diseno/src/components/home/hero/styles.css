@@ -1,0 +1,24 @@
+#scroll-watcher {
+  scale: 0 1;
+  animation: scroll-watcher linear;
+  animation-timeline: scroll(y);
+  transform-origin: left;
+}
+
+@keyframes scroll-watcher {
+  to { scale: 1 1; }
+}
+
+#hero {
+  scale: 1;
+  border-radius: 0;
+  animation: shrink-hero linear;
+  animation-timeline: scroll(root);
+}
+
+@keyframes shrink-hero {
+  to {
+    scale: 0.5;
+    border-radius: 100px;
+  }
+}

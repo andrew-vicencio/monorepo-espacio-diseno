@@ -1,0 +1,124 @@
+{
+  "desking": [
+    {
+      "_id": "product-desking-1",
+      "name": "Linear Workbench",
+      "slug": { "current": "linear-workbench" },
+      "image": "/images/Products/Desking.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-desking-2",
+      "name": "Height-Adjustable Desk",
+      "slug": { "current": "height-adjustable-desk" },
+      "image": "/images/Products/Desking.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-desking-3",
+      "name": "Executive Desk",
+      "slug": { "current": "executive-desk" },
+      "image": "/images/Products/Desking.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-desking-4",
+      "name": "Bench Cluster",
+      "slug": { "current": "bench-cluster" },
+      "image": "/images/Products/Desking.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    }
+  ],
+  "panels": [
+    {
+      "_id": "product-panels-1",
+      "name": "Acoustic Partition",
+      "slug": { "current": "acoustic-partition" },
+      "image": "/images/Products/Panels.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-panels-2",
+      "name": "Desk-Mounted Screen",
+      "slug": { "current": "desk-mounted-screen" },
+      "image": "/images/Products/Panels.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-panels-3",
+      "name": "Freestanding Divider",
+      "slug": { "current": "freestanding-divider" },
+      "image": "/images/Products/Panels.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    }
+  ],
+  "seating": [
+    {
+      "_id": "product-seating-1",
+      "name": "Ergonomic Task Chair",
+      "slug": { "current": "ergonomic-task-chair" },
+      "image": "/images/Products/Seating.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-seating-2",
+      "name": "Executive Chair",
+      "slug": { "current": "executive-chair" },
+      "image": "/images/Products/Seating.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-seating-3",
+      "name": "Visitor Chair",
+      "slug": { "current": "visitor-chair" },
+      "image": "/images/Products/Seating.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-seating-4",
+      "name": "Lounge Sofa",
+      "slug": { "current": "lounge-sofa" },
+      "image": "/images/Products/Seating.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    }
+  ],
+  "storage": [
+    {
+      "_id": "product-storage-1",
+      "name": "Mobile Pedestal",
+      "slug": { "current": "mobile-pedestal" },
+      "image": "/images/Products/Storage.jpeg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-storage-2",
+      "name": "Filing Cabinet",
+      "slug": { "current": "filing-cabinet" },
+      "image": "/images/Products/Storage.jpeg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-storage-3",
+      "name": "Lockers",
+      "slug": { "current": "lockers" },
+      "image": "/images/Products/Storage.jpeg",
+      "website": "https://espaciodiseno.com.ph"
+    }
+  ],
+  "custom": [
+    {
+      "_id": "product-custom-1",
+      "name": "Bespoke Reception Counter",
+      "slug": { "current": "bespoke-reception-counter" },
+      "image": "/images/Products/Customization.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    },
+    {
+      "_id": "product-custom-2",
+      "name": "Custom Pantry Cabinetry",
+      "slug": { "current": "custom-pantry-cabinetry" },
+      "image": "/images/Products/Customization.jpg",
+      "website": "https://espaciodiseno.com.ph"
+    }
+  ]
+}

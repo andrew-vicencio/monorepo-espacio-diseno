@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "project-1",
+    "title": "Amdocs Pantry Renovation",
+    "video": [
+      {
+        "asset": {
+          "url": "/videos/projects/placeholder.mp4"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "project-2",
+    "title": "BPO Headquarters Fit-Out",
+    "video": [
+      {
+        "asset": {
+          "url": "/videos/projects/placeholder.mp4"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "project-3",
+    "title": "Corporate Office Relocation",
+    "video": [
+      {
+        "asset": {
+          "url": "/videos/projects/placeholder.mp4"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "project-4",
+    "title": "Retail Flagship Build-Out",
+    "video": [
+      {
+        "asset": {
+          "url": "/videos/projects/placeholder.mp4"
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "job-1",
+    "title": "Senior Interior Designer",
+    "url": "https://espaciodiseno.com.ph/careers/senior-interior-designer",
+    "department": "Design"
+  },
+  {
+    "_id": "job-2",
+    "title": "Project Architect",
+    "url": "https://espaciodiseno.com.ph/careers/project-architect",
+    "department": "Design"
+  },
+  {
+    "_id": "job-3",
+    "title": "Project Manager - Fit-Out",
+    "url": "https://espaciodiseno.com.ph/careers/project-manager-fit-out",
+    "department": "Operations"
+  },
+  {
+    "_id": "job-4",
+    "title": "Site Engineer",
+    "url": "https://espaciodiseno.com.ph/careers/site-engineer",
+    "department": "Operations"
+  },
+  {
+    "_id": "job-5",
+    "title": "Estimator / Quantity Surveyor",
+    "url": "https://espaciodiseno.com.ph/careers/estimator-quantity-surveyor",
+    "department": "Operations"
+  },
+  {
+    "_id": "job-6",
+    "title": "Sales Account Executive",
+    "url": "https://espaciodiseno.com.ph/careers/sales-account-executive",
+    "department": "Sales & Marketing"
+  }
+]
