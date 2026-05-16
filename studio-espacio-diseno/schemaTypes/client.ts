@@ -1,0 +1,26 @@
+import {defineField, defineType} from 'sanity'
+
+export const client = defineType({
+  name: 'client',
+  title: 'Client',
+  type: 'document',
+  fields: [
+    defineField({
+      name: 'name',
+      title: 'Name',
+      type: 'string',
+      validation: (R) => R.required(),
+    }),
+    defineField({
+      name: 'logo',
+      title: 'Logo',
+      type: 'image',
+      options: {
+        accept: 'image/*',
+      },
+    }),
+  ],
+  preview: {
+    select: {title: 'name', media: 'logo'},
+  },
+})
