@@ -42,7 +42,7 @@ export default defineConfig({
                   .items([
                     S.listItem()
                       .title('Home Page')
-                      .id('homePage')
+                      .id('homePageSingleton')
                       .child(
                         S.document().schemaType('homePage').documentId('homePage'),
                       ),
