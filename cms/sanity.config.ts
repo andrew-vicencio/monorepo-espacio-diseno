@@ -40,6 +40,12 @@ export default defineConfig({
                 S.list()
                   .title('Site')
                   .items([
+                    S.listItem()
+                      .title('Home Page')
+                      .id('homePage')
+                      .child(
+                        S.document().schemaType('homePage').documentId('homePage'),
+                      ),
                     S.documentTypeListItem('testimonial').title('Testimonials'),
                     S.documentTypeListItem('client').title('Clients'),
                   ]),

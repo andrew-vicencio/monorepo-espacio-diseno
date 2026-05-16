@@ -18,8 +18,17 @@ export const productCategory = defineType({
       options: {source: 'title'},
       validation: (R) => R.required(),
     }),
+    defineField({
+      name: 'image',
+      title: 'Image',
+      type: 'image',
+      options: {hotspot: true},
+      fields: [
+        {name: 'alt', type: 'string', title: 'Alt text', validation: (R) => R.required()},
+      ],
+    }),
   ],
   preview: {
-    select: {title: 'title'},
+    select: {title: 'title', media: 'image'},
   },
 })
