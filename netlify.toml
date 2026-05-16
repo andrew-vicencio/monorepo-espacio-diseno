@@ -1,4 +1,9 @@
 [build]
-  base = "web/"
+  base = "espacio-diseno"
   command = "npm run build"
-  publish = "public"
+  publish = "espacio-diseno/out"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
