@@ -10,6 +10,8 @@ import {
   SlideDown,
 } from "@/components/animations/animations";
 import Link from "next/link";
+import { urlFor } from "@/lib/sanityImage";
+import type { SanityImageSource } from "@sanity/image-url";
 
 import TestimonialCarousel from "@/components/home/testimonials/TestimonialCarousel";
 import ServicesCarousel from "@/components/home/ServicesCarousel";
@@ -19,7 +21,46 @@ import ProductGrid from "@/components/home/ProductGrid";
 import HeroComponent from "@/components/home/hero/hero";
 import RenderSection from "@/components/home/RenderSection";
 
-export default function HomeView() {
+type SanityImage = SanityImageSource & { alt?: string }
+
+type HomePageData = {
+  breakImage1?: SanityImage
+  breakImage2?: SanityImage
+  ctaImage?: SanityImage
+} | null
+
+type SanityClient = {
+  _id: string
+  name: string
+  logo?: SanityImageSource
+}
+
+type SanityProductCategory = {
+  _id: string
+  title: string
+  slug: { current: string }
+  image?: SanityImage
+}
+
+interface HomeViewProps {
+  homePageData?: HomePageData
+  clients?: SanityClient[]
+  productCategories?: SanityProductCategory[]
+}
+
+function imgSrc(sanityImage: SanityImage | undefined, fallback: string): string {
+  if (sanityImage) {
+    return urlFor(sanityImage).width(1200).format('webp').quality(80).url()
+  }
+  return fallback
+}
+
+export default function HomeView({ homePageData, clients, productCategories }: HomeViewProps) {
+  const break1Src = imgSrc(homePageData?.breakImage1, '/images/home/break-3.jpg')
+  const break1Alt = homePageData?.breakImage1?.alt ?? 'Espacio Diseño office interior break area'
+  const break2Src = imgSrc(homePageData?.breakImage2, '/images/home/break-2.jpg')
+  const break2Alt = homePageData?.breakImage2?.alt ?? 'Espacio Diseño modern office interior design'
+
   return (
     <>
       <main>
@@ -66,8 +107,8 @@ export default function HomeView() {
             variants={SlideLeft}
           >
             <img
-              src="/images/home/break-3.jpg"
-              alt="Espacio Diseño office interior break area"
+              src={break1Src}
+              alt={break1Alt}
               className="h-full w-full object-cover"
               loading="lazy"
             />
@@ -133,8 +174,8 @@ export default function HomeView() {
             variants={SlideRight}
           >
             <img
-              src="/images/home/break-2.jpg"
-              alt="Espacio Diseño modern office interior design"
+              src={break2Src}
+              alt={break2Alt}
               className="h-full w-full object-cover"
               loading="lazy"
             />
@@ -143,7 +184,7 @@ export default function HomeView() {
 
         {/* Products */}
         <section className="py-20">
-          <ProductGrid />
+          <ProductGrid categories={productCategories} />
         </section>
 
         {/* Products tagline */}
@@ -156,7 +197,7 @@ export default function HomeView() {
         </div>
 
         {/* Client logos */}
-        <ClientCarousel />
+        <ClientCarousel clients={clients} />
 
         {/* Testimonials */}
         <div className="mt-20">
@@ -174,7 +215,7 @@ export default function HomeView() {
           </p>
         </div>
       </main>
-      <CallToAction />
+      <CallToAction ctaImage={homePageData?.ctaImage} />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeView from "./HomeView";
+import { getHomePageData, getClients, getProductCategories } from "@/lib/queries";
 
 export const metadata: Metadata = {
   title: "Interior Design & Office Fit-Out Philippines",
@@ -24,6 +25,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function IndexPage() {
-  return <HomeView />;
+export default async function IndexPage() {
+  const [homePageData, clients, productCategories] = await Promise.all([
+    getHomePageData(),
+    getClients(),
+    getProductCategories(),
+  ]);
+
+  return (
+    <HomeView
+      homePageData={homePageData}
+      clients={clients}
+      productCategories={productCategories}
+    />
+  );
 }

@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import type { SanityImageSource } from '@sanity/image-url';
+import { urlFor } from '@/lib/sanityImage';
 
 import {
   Description,
@@ -10,7 +12,15 @@ import {
 } from '@headlessui/react'
 import ContactForm from '../contact-form/index';
 
-const CallToAction = () => {
+interface CallToActionProps {
+  ctaImage?: (SanityImageSource & { alt?: string }) | null
+}
+
+const CallToAction = ({ ctaImage }: CallToActionProps) => {
+  const imageSrc = ctaImage
+    ? urlFor(ctaImage).width(900).format('webp').quality(80).url()
+    : '/images/CTA.jpg'
+  const imageAlt = ctaImage?.alt ?? 'Espacio Diseño interior design consultation'
   let [open, setIsOpen] = useState(false)
 
   return (
@@ -43,8 +53,8 @@ const CallToAction = () => {
           </div>
           <div className="flex-1 max-h-[40vh] w-full rounded-tl-xl rounded-tr-[90px] rounded-br-xl rounded-bl-[90px] overflow-hidden shadow-2xl border-2 border-white/20">
             <img
-              src="/images/CTA.jpg"
-              alt="Espacio Diseño interior design consultation"
+              src={imageSrc}
+              alt={imageAlt}
               className='w-full max-h-[40vh] object-cover object-[50%_80%]'
               loading="lazy"
             />

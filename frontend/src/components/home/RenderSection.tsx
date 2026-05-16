@@ -37,7 +37,7 @@ const containerVariant = {
 
 const itemVariant = {
   hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.16, ease: "easeIn" } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.16, ease: "easeIn" as const } },
 };
 
 const RenderSection = () => {
